@@ -1,0 +1,15 @@
+<section id="services" class="services">
+  <div class="container">
+    <h2 class="section-title">Services</h2>
+
+    <div class="services-grid">
+      <div class="service-card" *ngFor="let service of services; let i = index">
+        <div class="icon">
+          <i [class]="'fas fa-' + service.icon"></i>
+        </div>
+        <h3>{{ service.title }}</h3>
+        <p>{{ service.description }}</p>
+      </div>
+    </div>
+  </div>
+</section>

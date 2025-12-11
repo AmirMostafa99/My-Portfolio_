@@ -1,0 +1,96 @@
+<!-- Mobile menu overlay -->
+<div class="mobile-overlay" [class.active]="isMenuOpen" (click)="toggleMenu()"></div>
+
+<header class="header">
+  <!-- Animated space background -->
+  <div class="header-bg">
+    <div class="stars stars--layer1"></div>
+    <div class="stars stars--layer2"></div>
+    <div class="stars stars--layer3"></div>
+  </div>
+
+  <div class="container">
+    <a class="logo" (click)="scrollToTop()" (keydown.enter)="scrollToTop()" tabindex="0"> AMIR </a>
+
+    <nav class="nav" [class.nav-open]="isMenuOpen">
+      <div class="mobile-menu-header">
+        <span class="menu-title">Navigation</span>
+        <button class="close-btn" (click)="toggleMenu()" aria-label="Close menu">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <a
+        (click)="scrollToSection('services'); $event.preventDefault()"
+        class="nav-link"
+        tabindex="0"
+        role="button"
+      >
+        Services
+      </a>
+      <a
+        (click)="scrollToSection('projects'); $event.preventDefault()"
+        class="nav-link"
+        tabindex="0"
+        role="button"
+      >
+        Projects
+      </a>
+      <a
+        (click)="downloadCV(); $event.preventDefault()"
+        class="nav-link"
+        tabindex="0"
+        role="button"
+      >
+        Download CV
+      </a>
+      <a
+        (click)="scrollToSection('skills'); $event.preventDefault()"
+        class="nav-link"
+        tabindex="0"
+        role="button"
+      >
+        Skills
+      </a>
+      <a
+        (click)="scrollToSection('contact'); $event.preventDefault()"
+        class="nav-link"
+        tabindex="0"
+        role="button"
+      >
+        Contact
+      </a>
+    </nav>
+
+    <button
+      class="hamburger"
+      (click)="toggleMenu()"
+      [class.active]="isMenuOpen"
+      aria-label="Toggle navigation menu"
+      aria-expanded="{{ isMenuOpen }}"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</header>
+
+<!-- Back to top button -->
+<button
+  *ngIf="showBackToTop"
+  class="back-to-top"
+  (click)="scrollToTop()"
+  aria-label="Back to top"
+  title="Back to top"
+>
+  <svg
+    width="18"
+    height="18"
+    viewBox="0 0 24 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    aria-hidden="true"
+  >
+    <path d="M12 4l-8 8h5v8h6v-8h5l-8-8z" fill="currentColor" />
+  </svg>
+</button>

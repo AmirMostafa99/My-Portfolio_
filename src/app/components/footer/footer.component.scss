@@ -1,0 +1,94 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.footer {
+  position: relative;
+  overflow: hidden;
+  background: rgba(3, 7, 15, 0.98);
+  backdrop-filter: blur(12px);
+  padding: 2rem 0;
+  border-top: 1px solid rgba(59, 130, 246, 0.1);
+  box-shadow: 0 -2px 20px rgba(0, 0, 0, 0.5);
+
+  /* Space theme background with stars */
+  &::before {
+    content: '';
+    position: absolute;
+    inset: -50px;
+    opacity: 0.2;
+    background-repeat: repeat;
+    background-size: 250px 250px;
+    pointer-events: none;
+    background-image: radial-gradient(circle, rgba(255, 255, 255, 0.6) 1px, transparent 1px),
+      radial-gradient(circle, rgba(148, 163, 255, 0.4) 1px, transparent 1px);
+    animation: moveFooterStars 150s linear infinite;
+    z-index: 0;
+  }
+
+  .container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+
+    @include respond-to(mobile) {
+      flex-direction: column;
+      gap: 1.5rem;
+      text-align: center;
+    }
+  }
+
+  .copyright {
+    color: $text-white;
+    font-size: 1rem;
+
+    .highlight {
+      color: $primary-blue;
+      font-weight: $font-weight-semibold;
+    }
+  }
+
+  .social-icons {
+    display: flex;
+    gap: 1rem;
+
+    a {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba($text-white, 0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba($text-white, 0.2);
+      border-radius: 6px;
+      transition: all 0.3s ease;
+      text-decoration: none;
+
+      i {
+        font-size: 1.2rem;
+        color: $text-white;
+      }
+
+      &:hover {
+        background: $primary-blue;
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4);
+      }
+    }
+  }
+
+  /* Star movement animation for footer section */
+  @keyframes moveFooterStars {
+    0% {
+      background-position: 0 0, 0 0;
+    }
+    100% {
+      background-position: 250px 250px, 125px 125px;
+    }
+  }
+}

@@ -1,0 +1,108 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.contact {
+  @include section-padding;
+  background: $background-light;
+
+  .container {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .section-title {
+    @include section-heading;
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem;
+    max-width: 900px;
+    margin: 0 auto;
+
+    @include respond-to(tablet) {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  }
+
+  .contact-card {
+    @include card-style;
+    padding: 3rem 2rem;
+    text-align: center;
+    opacity: 1;
+    transform: scale(0.9);
+    display: block !important;
+    visibility: visible !important;
+    cursor: pointer;
+    user-select: none;
+    transition: opacity 0.8s cubic-bezier(0.34, 1.56, 0.64, 1),
+      transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+    border-radius: $border-radius;
+    box-shadow: none;
+    border: none;
+
+    /* Animated state - matching Skills section */
+    &.card-animated {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* Hover effect - exactly matching Skills section */
+    &:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 8px 25px rgba(59, 130, 246, 0.2);
+
+      .icon i {
+        transform: scale(1.08);
+        filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.2));
+      }
+    }
+
+    /* Click/Active effect - matching Skills */
+    &:active {
+      transform: scale(0.96) translateY(-6px);
+      box-shadow: 0 6px 20px rgba(59, 130, 246, 0.25);
+      transition: all 0.15s ease;
+
+      .icon i {
+        transform: scale(1.04);
+      }
+    }
+
+    .icon {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+
+      i {
+        font-size: 3.5rem;
+        color: $primary-blue;
+        transition: all 0.3s ease;
+      }
+    }
+
+    h3 {
+      font-size: 1.5rem;
+      font-weight: $font-weight-bold;
+      color: #000;
+      margin-bottom: 1rem;
+    }
+
+    a {
+      color: #333;
+      font-size: 1.1rem;
+      text-decoration: none;
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: $primary-blue;
+      }
+    }
+  }
+}

@@ -1,0 +1,238 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.projects {
+  @include section-padding;
+  position: relative;
+  overflow: hidden;
+  background: transparent;
+
+  /* Space theme background with stars */
+  &::before {
+    content: '';
+    position: absolute;
+    inset: -50px;
+    opacity: 0.4;
+    background-repeat: repeat;
+    background-size: 280px 280px;
+    pointer-events: none;
+    background-image: radial-gradient(circle, rgba(255, 255, 255, 0.8) 1px, transparent 1px),
+      radial-gradient(circle, rgba(148, 163, 255, 0.6) 1px, transparent 1px),
+      radial-gradient(circle, rgba(59, 130, 246, 0.4) 1px, transparent 1px);
+    animation: moveProjectStars 100s linear infinite;
+    z-index: 0;
+  }
+
+  .container {
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .section-title {
+    @include section-heading;
+    color: $text-white;
+    text-align: center;
+    margin-bottom: 4rem;
+    position: relative;
+
+    /* Glowing underline */
+    &::after {
+      content: '';
+      display: block;
+      margin: 0.75rem auto 0;
+      height: 3px;
+      width: 120px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, transparent, $primary-blue, transparent);
+      box-shadow: 0 0 14px rgba(59, 130, 246, 0.8);
+    }
+  }
+
+  /* Slider Container */
+  .slider-container {
+    position: relative;
+    margin-top: 4rem;
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+
+    @include respond-to(tablet) {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+    }
+
+    @include respond-to(mobile) {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+  }
+
+  /* Slider Arrows */
+  .slider-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    z-index: 10;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateY(-50%) scale(1.1);
+      box-shadow: 0 6px 20px rgba(59, 130, 246, 0.3);
+    }
+
+    &:active {
+      transform: translateY(-50%) scale(0.95);
+    }
+
+    .arrow-icon {
+      line-height: 1;
+    }
+
+    &.slider-arrow-left {
+      left: -60px;
+
+      @include respond-to(tablet) {
+        left: -40px;
+      }
+
+      @include respond-to(mobile) {
+        left: -30px;
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+      }
+    }
+
+    &.slider-arrow-right {
+      right: -60px;
+
+      @include respond-to(tablet) {
+        right: -40px;
+      }
+
+      @include respond-to(mobile) {
+        right: -30px;
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+      }
+    }
+  }
+
+  /* Pagination Dots */
+  .pagination-dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    margin-top: 3rem;
+  }
+
+  .pagination-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.5);
+      transform: scale(1.2);
+    }
+
+    &.active {
+      background: $primary-blue;
+      width: 14px;
+      height: 14px;
+      box-shadow: 0 0 12px rgba(59, 130, 246, 0.6);
+      transform: scale(1.1);
+    }
+  }
+
+  .project-card {
+    @include card-style;
+    overflow: hidden;
+
+    .project-image {
+      width: 100%;
+      height: 250px;
+      overflow: hidden;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+      }
+    }
+
+    &:hover {
+      .project-image img {
+        transform: scale(1.05);
+      }
+    }
+
+    .project-content {
+      padding: 1.5rem;
+
+      h3 {
+        font-size: 1.5rem;
+        font-weight: $font-weight-bold;
+        color: #000;
+        margin-bottom: 0.5rem;
+      }
+
+      .stack {
+        font-size: 0.9rem;
+        color: #000;
+        font-weight: $font-weight-medium;
+        margin-bottom: 1rem;
+      }
+
+      .details-link {
+        color: $primary-blue;
+        font-weight: $font-weight-semibold;
+        font-size: 0.95rem;
+        text-decoration: none;
+        transition: color 0.3s ease;
+
+        &:hover {
+          color: darken($primary-blue, 15%);
+        }
+      }
+    }
+  }
+}
+
+/* Star movement animation for projects section */
+@keyframes moveProjectStars {
+  0% {
+    background-position: 0 0, 0 0, 0 0;
+  }
+  100% {
+    background-position: 280px 280px, 140px 140px, 420px 420px;
+  }
+}

@@ -1,0 +1,20 @@
+/* Fix visibility for Services and Skills */
+.services .service-card {
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: block !important;
+}
+
+.skills .skill-item {
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: flex !important;
+}
+
+.services-grid {
+  display: grid !important;
+}
+
+.skills-grid {
+  display: grid !important;
+}

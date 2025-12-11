@@ -1,0 +1,122 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.skills {
+  @include section-padding;
+  position: relative;
+  overflow: hidden;
+  background: transparent;
+
+  /* Space theme background with stars */
+  &::before {
+    content: '';
+    position: absolute;
+    inset: -50px;
+    opacity: 0.4;
+    background-repeat: repeat;
+    background-size: 280px 280px;
+    pointer-events: none;
+    background-image: radial-gradient(circle, rgba(255, 255, 255, 0.8) 1px, transparent 1px),
+      radial-gradient(circle, rgba(148, 163, 255, 0.6) 1px, transparent 1px),
+      radial-gradient(circle, rgba(59, 130, 246, 0.4) 1px, transparent 1px);
+    animation: moveSkillsStars 100s linear infinite;
+    z-index: 0;
+  }
+
+  .container {
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .section-title {
+    @include section-heading;
+    color: $text-white;
+    text-align: center;
+    margin-bottom: 4rem;
+    position: relative;
+
+    /* Glowing underline */
+    &::after {
+      content: '';
+      display: block;
+      margin: 0.75rem auto 0;
+      height: 3px;
+      width: 120px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, transparent, $primary-blue, transparent);
+      box-shadow: 0 0 14px rgba(59, 130, 246, 0.8);
+    }
+  }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+
+    @include respond-to(tablet) {
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      gap: 1.5rem;
+    }
+
+    @include respond-to(mobile) {
+      grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+      gap: 1rem;
+    }
+  }
+
+  .skill-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 1.5rem 1rem;
+    background: transparent;
+    border-radius: $border-radius;
+    box-shadow: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    backdrop-filter: none;
+    border: none;
+
+    &:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 8px 25px rgba(59, 130, 246, 0.2);
+
+      .skill-icon i {
+        transform: scale(1.08);
+        filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.2)); /* Subtle shadow on hover */
+      }
+    }
+
+    .skill-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      background: transparent;
+
+      i {
+        display: inline-block;
+        opacity: 0.9;
+        transform: scale(0.9);
+        transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+    }
+
+    /* Icon animation when visible */
+    &.icon-animated {
+      .skill-icon i {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .skill-name {
+      font-size: 0.95rem;
+      font-weight: $font-weight-bold;
+      color: #ffffff;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+      letter-spacing: 0.3px;
+    }
+  }
+}

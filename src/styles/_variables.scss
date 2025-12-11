@@ -1,0 +1,36 @@
+// Colors - Vibrant palette matching screenshot
+$primary-blue: #5b9fff;
+$primary-blue-bright: #6bb0ff;
+$dark-navy: #000000;
+$text-white: #ffffff;
+$text-gray: #e0e0e0;
+$background-light: #f8f9fa;
+$card-white: #ffffff;
+
+// Typography
+$font-primary: 'Poppins', sans-serif;
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+// Spacing
+$spacing-xs: 0.5rem;
+$spacing-sm: 1rem;
+$spacing-md: 2rem;
+$spacing-lg: 4rem;
+$spacing-xl: 6rem;
+
+// Border
+$border-radius: 16px;
+$border-radius-sm: 8px;
+
+// Shadow
+$shadow-card: 0 4px 20px rgba(0, 0, 0, 0.08);
+$shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.12);
+
+// Breakpoints
+$breakpoint-mobile: 425px;
+$breakpoint-tablet: 768px;
+$breakpoint-desktop: 1024px;
+$breakpoint-wide: 1366px;

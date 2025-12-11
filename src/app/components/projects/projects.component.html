@@ -1,0 +1,65 @@
+<section id="projects" class="projects">
+  <div class="container">
+    <h2 class="section-title">Projects</h2>
+
+    <!-- Slider Container with Navigation -->
+    <div class="slider-container">
+      <!-- Left Arrow -->
+      <button
+        class="slider-arrow slider-arrow-left"
+        (click)="prev()"
+        type="button"
+        aria-label="Previous projects"
+      >
+        <span class="arrow-icon">‹</span>
+      </button>
+
+      <!-- Projects Grid -->
+      <div class="projects-grid">
+        @for (project of visibleProjects; track project.title) {
+        <div class="project-card">
+          <div class="project-image">
+            <img
+              [src]="project.image"
+              [alt]="project.title + ' - Project screenshot'"
+              loading="lazy"
+              width="400"
+              height="250"
+            />
+          </div>
+          <div class="project-content">
+            <h3>{{ project.title }}</h3>
+            <p class="stack">{{ project.stack }}</p>
+            <a [href]="project.link" class="details-link" target="_blank" rel="noopener">
+              MORE DETAILS
+            </a>
+          </div>
+        </div>
+        }
+      </div>
+
+      <!-- Right Arrow -->
+      <button
+        class="slider-arrow slider-arrow-right"
+        (click)="next()"
+        type="button"
+        aria-label="Next projects"
+      >
+        <span class="arrow-icon">›</span>
+      </button>
+    </div>
+
+    <!-- Pagination Dots -->
+    <div class="pagination-dots">
+      @for (dot of paginationDots; track $index) {
+      <button
+        class="pagination-dot"
+        [class.active]="$index === currentIndex"
+        (click)="goTo($index)"
+        type="button"
+        [attr.aria-label]="'Go to slide ' + ($index + 1)"
+      ></button>
+      }
+    </div>
+  </div>
+</section>

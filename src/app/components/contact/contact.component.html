@@ -1,0 +1,27 @@
+<section id="contact" class="contact">
+  <div class="container">
+    <h2 class="section-title">Let's work together</h2>
+
+    <div class="contact-grid">
+      <div class="contact-card phone-card" [class.animate-visible]="isVisible">
+        <div class="icon">
+          <i class="fas fa-phone"></i>
+        </div>
+        <h3>Phone</h3>
+        <a [href]="'tel:' + contact.phone" aria-label="Call {{ contact.phone }}">
+          {{ contact.phone }}
+        </a>
+      </div>
+
+      <div class="contact-card email-card" [class.animate-visible]="isVisible">
+        <div class="icon">
+          <i class="fas fa-envelope"></i>
+        </div>
+        <h3>Email</h3>
+        <a [href]="'mailto:' + contact.email" aria-label="Email {{ contact.email }}">
+          {{ contact.email }}
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
