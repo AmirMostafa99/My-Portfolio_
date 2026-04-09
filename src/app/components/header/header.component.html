@@ -13,12 +13,7 @@
     <a class="logo" (click)="scrollToTop()" (keydown.enter)="scrollToTop()" tabindex="0"> AMIR </a>
 
     <nav class="nav" [class.nav-open]="isMenuOpen">
-      <div class="mobile-menu-header">
-        <span class="menu-title">Navigation</span>
-        <button class="close-btn" (click)="toggleMenu()" aria-label="Close menu">
-          <i class="fas fa-times"></i>
-        </button>
-      </div>
+
       <a
         (click)="scrollToSection('services'); $event.preventDefault()"
         class="nav-link"

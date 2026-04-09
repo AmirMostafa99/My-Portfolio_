@@ -11,7 +11,6 @@
   backdrop-filter: blur(12px);
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
   border-bottom: 1px solid rgba(59, 130, 246, 0.1);
-  overflow: hidden;
 
   .container {
     max-width: 1400px;
@@ -46,7 +45,7 @@
       height: 100vh;
       background: linear-gradient(135deg, #0a0a0a 0%, #050505 50%, #000000 100%);
       flex-direction: column;
-      padding: 1.5rem;
+      padding: 6rem 1.5rem 1.5rem;
       transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       z-index: 1002;
       box-shadow: -8px 0 30px rgba(0, 0, 0, 0.8);
@@ -59,52 +58,7 @@
     }
   }
 
-  .mobile-menu-header {
-    display: none;
 
-    @include respond-to(tablet) {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-bottom: 1.5rem;
-      margin-bottom: 1.5rem;
-      border-bottom: 2px solid rgba(59, 130, 246, 0.3);
-
-      .menu-title {
-        font-size: 1.5rem;
-        font-weight: $font-weight-bold;
-        color: $primary-blue;
-        letter-spacing: 0.05em;
-      }
-
-      .close-btn {
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 6px;
-        width: 36px;
-        height: 36px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        transition: all 0.3s ease;
-
-        i {
-          font-size: 1.2rem;
-          color: $text-white;
-        }
-
-        &:hover {
-          background: rgba(239, 68, 68, 0.15);
-          border-color: rgba(239, 68, 68, 0.3);
-
-          i {
-            color: #ef4444;
-          }
-        }
-      }
-    }
-  }
 
   .nav-link {
     color: $text-white;
@@ -238,7 +192,7 @@
     opacity: 0;
     visibility: hidden;
     transition: all 0.4s ease;
-    z-index: 1001;
+    z-index: 999;
 
     &.active {
       opacity: 1;
@@ -259,4 +213,5 @@
   pointer-events: none;
   background: radial-gradient(circle at top, #0a1628 0%, #050b15 60%, #000000 100%);
   opacity: 0.9;
+  overflow: hidden;
 }

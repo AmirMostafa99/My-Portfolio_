@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PROJECTS } from '../../data/portfolio.data';
 
@@ -13,9 +13,9 @@ export class ProjectsComponent implements OnInit, OnDestroy {
   projects = PROJECTS;
   visibleProjects = PROJECTS;
   currentIndex = 0; // Made public for template access
-  private readonly visibleCount = 3; // Show 3 cards at once
+  visibleCount = 3; // Show dynamic cards based on screen size
   private sliderIntervalId: any;
-  private readonly autoSlideInterval = 20000; // 20 seconds
+  private readonly autoSlideInterval = 5000; // 5 seconds
 
   // Get total number of pagination dots (positions)
   get totalPositions(): number {
@@ -29,7 +29,26 @@ export class ProjectsComponent implements OnInit, OnDestroy {
       .map((_, i) => i);
   }
 
+  @HostListener('window:resize')
+  onResize() {
+    this.checkScreenSize();
+  }
+
+  private checkScreenSize(): void {
+    if (typeof window !== 'undefined') {
+      if (window.innerWidth <= 425) {
+        this.visibleCount = 1;
+      } else if (window.innerWidth <= 768) {
+        this.visibleCount = 2;
+      } else {
+        this.visibleCount = 3;
+      }
+      this.updateVisibleProjects();
+    }
+  }
+
   ngOnInit(): void {
+    this.checkScreenSize();
     this.updateVisibleProjects();
     this.startAutoSlide();
   }
